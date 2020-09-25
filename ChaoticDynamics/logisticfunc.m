@@ -45,6 +45,7 @@ hold off;
 
 %% find fixed point
 % find fixed point according to initial value of x
+% One can use FindFixPt to check the fixed point is attractor or repeller
 function FindFixPt(A,x0_arr,iter,y)
     % x0: initial value of x
     % iter: iteration of vertical lines and horizontal lines
