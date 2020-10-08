@@ -22,18 +22,13 @@ c2 = -A1*w1*(w1^2-2)/(w1^4+4);
 c3 = 2*A1*w1/(w1^4+4);
 c4 = (A1*w1^4-4*A1*w1+4*A1)/(w1*(w1^4+4));
 
+ta = linspace(0,t,1000)';
+ant = c1*cos(w1.*ta) + c2/w1*sin(w1.*ta) + c3*exp(-ta).*cos(ta)+ c4*exp(-ta).*sin(ta) - (c1*cos(w1*(ta-2*pi/w1)) + c2/w1*sin(w1*(t-2*pi/w1)) + c3*exp(-(t-2*pi/w1))*cos(t-2*pi/w1)+ c4*exp(-(t-2*pi/w1))*sin(t-2*pi/w1))*heaviside(t-2*pi/w1);
+
 ant1 = @(t) c1*cos(w1*t) + c2/w1*sin(w1*t) + c3*exp(-t)*cos(t)+ c4*exp(-t)*sin(t);
-% ant1 = @(t) c1*cos(w1*t) + c2/w1*sin(w1*t) + c3*exp(-t)*cos(w1*t) + c4*exp(-t)*sin(w1*t);
+diff_ant1 = @(t) -w1*c1*sin(w1*t) + c2*cos(w1*t) - c3*exp(-t)*cos(t) -c3*exp(-t)*sin(t) - c4*exp(-t)*sin(t) + c4*exp(-t)*cos(t);
 
-find = 0;
-ic2 = [0,0];
-for i = 1:length(ts)
-    if ts(i,1) > 2*pi/w1 & find == 0
-        ic2 = [xs(i,1),xs(i,2)]; % initial condition of second part analytic solution
-        break;
-    end
-end
-
+ic2 = [ant1(2*pi/w1),diff_ant1(2*pi/w1)];
 c5 = ic2(1);
 c6 = ic2(1)+ic2(2);
 ant2 = @(t) c5*exp(-t)*cos(t) + c6*exp(-t)*sin(t);

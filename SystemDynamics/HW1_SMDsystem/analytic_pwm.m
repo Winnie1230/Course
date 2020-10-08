@@ -34,7 +34,7 @@ legend;
 function ant = analytic(t,tp,alpha,A)
     n=0;
     ant = zeros(length(t),1);
-    for i = 1:16
+    for i = 1:3
         ant = ant + (1/6-1/2.*exp(-2.*(t-n.*tp))+1/3.*exp(-3.*(t-n.*tp))).*heaviside(t-n.*tp)-(1/6-1/2.*exp(-2.*(t-(alpha+n).*tp))+1/3.*exp(-3.*(t-(alpha+n).*tp))).*heaviside(t-(alpha+n).*tp);
         n = n + 1;
     end
