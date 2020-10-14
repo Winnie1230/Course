@@ -1,5 +1,6 @@
 clear all; close all; clc;
 % main function of SMD system
+% use ode45 to solve solution
 % compare different conditions(different w and different A)
 m = 1; c=2; k = 2;
 t = 4; %sec
@@ -22,6 +23,7 @@ for i = 1:length(A1)
     for j = 1:size(ts,1)
         fs(j,1) = Force1(ts(j,1),w,A);
     end
+    % ---------------------------
     
     subplot(3,1,1);
     plot(ts(:,1),fs(:,1),'DisplayName',['A=',num2str(A)]); hold on;

@@ -22,9 +22,12 @@ c2 = -A1*w1*(w1^2-2)/(w1^4+4);
 c3 = 2*A1*w1/(w1^4+4);
 c4 = (A1*w1^4-4*A1*w1+4*A1)/(w1*(w1^4+4));
 
+% ------ method 1 (direct use laplace transform) ------
 ta = linspace(0,t,1000)';
-ant = c1*cos(w1.*ta) + c2/w1*sin(w1.*ta) + c3*exp(-ta).*cos(ta)+ c4*exp(-ta).*sin(ta) - (c1*cos(w1*(ta-2*pi/w1)) + c2/w1*sin(w1*(t-2*pi/w1)) + c3*exp(-(t-2*pi/w1))*cos(t-2*pi/w1)+ c4*exp(-(t-2*pi/w1))*sin(t-2*pi/w1))*heaviside(t-2*pi/w1);
+ant = c1*cos(w1.*ta) + c2/w1*sin(w1.*ta) + c3*exp(-ta).*cos(ta)+ c4*exp(-ta).*sin(ta) - (c1*cos(w1.*(ta-2*pi/w1)) + c2/w1*sin(w1.*(ta-2*pi/w1)) + c3*exp(-(ta-2*pi/w1)).*cos(ta-2*pi/w1)+ c4*exp(-(ta-2*pi/w1)).*sin(ta-2*pi/w1)).*heaviside(ta-2*pi/w1);
+% -----------------------------------------------------
 
+% ------ method 2(segmented analysis) ------
 ant1 = @(t) c1*cos(w1*t) + c2/w1*sin(w1*t) + c3*exp(-t)*cos(t)+ c4*exp(-t)*sin(t);
 diff_ant1 = @(t) -w1*c1*sin(w1*t) + c2*cos(w1*t) - c3*exp(-t)*cos(t) -c3*exp(-t)*sin(t) - c4*exp(-t)*sin(t) + c4*exp(-t)*cos(t);
 
@@ -33,17 +36,19 @@ c5 = ic2(1);
 c6 = ic2(1)+ic2(2);
 ant2 = @(t) c5*exp(-t)*cos(t) + c6*exp(-t)*sin(t);
 
-for i = 1:length(ts)
-    if ts(i,1) <= 2*pi/w1
-        y1(i,1) = ant1(ts(i,1));
+for i = 1:length(ta)
+    if ta(i,1) <= 2*pi/w1
+        y1(i,1) = ant1(ta(i,1));
     else
-        y1(i,1) = ant2(ts(i,1)-2*pi/w1);
+        y1(i,1) = ant2(ta(i,1)-2*pi/w1);
     end
 end
+% -------------------------------------------
 
 %% plot
 plot(ts(:,1),xs(:,1),'DisplayName','ode45'); hold on;
-plot(ts(:,1),y1(:,1),'DisplayName','analytic solution'); hold on;
+plot(ta(:,1),ant(:,1),'DisplayName','analytic solution - method 1'); hold on;
+plot(ta(:,1),y1(:,1),'DisplayName','analytic solution - method 2'); hold on;
 title('x-t plot');
 xlabel('t');
 ylabel('x');

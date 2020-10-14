@@ -23,9 +23,11 @@ c2 = (-A1*w1^3+6*A1*w1)/((w1^2+4)*(w1^2+9));
 c3 = A1*w1/(w1^2+4);
 c4 = -A1*w1/(w1^2+9);
 
+% ------ method 1 (direct use laplace transform) ------
 ta = linspace(0,t,1000)';
 ant = c1.*cos(w1.*ta) + c2/w1.*sin(w1.*ta) + c3.*exp(-2.*ta) + c4.*exp(-3.*ta) - (c1.*cos(w1.*(ta-2.*pi/w1)) + c2/w1.*sin(w1.*(ta-2*pi/w1)) + c3.*exp(-2.*(ta-2*pi/w1)) + c4.*exp(-3.*(ta-2*pi/w1))).*heaviside(ta-2*pi/w1);
 
+% ------ method 2() ------
 ant1 = @(t) c1*cos(w1*t) + c2/w1*sin(w1*t) + c3*exp(-2*t) + c4*exp(-3*t);
 diff_ant1 = @(t) -w1*c1*sin(w1*t) + c2*cos(w1*t) -2*c3*exp(-2*t) -3*c4*exp(-3*t);
 
