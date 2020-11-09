@@ -20,7 +20,7 @@ f1 = @(t,X)[X(2);1/m*Force1(t,w1,A1)-k/m*X(1)-c/m*X(2)]; % sin input
 c1=-2*A1*w1/(w1^4+4);
 c2 = -A1*w1*(w1^2-2)/(w1^4+4);
 c3 = 2*A1*w1/(w1^4+4);
-c4 = (A1*w1^4-4*A1*w1+4*A1)/(w1*(w1^4+4));
+c4 = A1*w1^3/(w1^4+4);
 
 % ------ method 1 (direct use laplace transform) ------
 ta = linspace(0,t,1000)';
