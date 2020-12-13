@@ -24,4 +24,5 @@ function PlotSpring(spr_x,spr_y)
     plot([spr_origin, spr_origin+slen],[spr_y, spr_y],'k','LineWidth',2); hold on;
     plot([range(:,1),range(:,2)],[range(:,3),range(:,4)],'k','LineWidth',2); hold on;
     plot([x_right, x_right+slen],[spr_y, spr_y],'k','LineWidth',2); hold off;
+%     axis([-1 4 4 8]);
 end
