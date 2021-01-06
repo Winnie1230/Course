@@ -167,58 +167,58 @@ xlabel('t');
 ylabel('w');
 
 %% animation plot
-figure('units','normalized','outerposition',[0 0 1 1])
-filename = 'motion.gif';
-
-subplot(4,2,2);
-h1 = animatedline('Color','b','LineWidth',1);
-axis([min(ts(:,1)) max(ts(:,1)) min(vel) max(vel)]);
-title('v-t plot');
-xlabel('t');
-ylabel('v');
-
-subplot(4,2,4);
-h2 = animatedline('Color','b','LineWidth',1);
-axis([min(ts(:,1)) max(ts(:,1)) min(acc)-1 max(acc)]);
-title('acc-t plot');
-xlabel('t');
-ylabel('acc');
-
-subplot(4,2,6);
-h3 = animatedline('Color','b','LineWidth',1);
-axis([min(ts(:,1)) max(ts(:,1)) min(theta) max(theta)]);
-title('theta-t plot');
-xlabel('t');
-ylabel('theta');
-
-subplot(4,2,8);
-h4 = animatedline('Color','b','LineWidth',1);
-axis([min(ts(:,1)) max(ts(:,1)) min(w(:,1)) max(w(:,1))]);
-title('w-t plot');
-xlabel('t');
-ylabel('w');
-
-del = 0.001; % time between animation frames
-for i=1:size(ts,1)
-    subplot(4,2,[1 3 5 7]);
-    Plot(theta(i,1),H,L,l1,l2,l3);
-    
-    addpoints(h1,ts(i,1),vel(i,1));
-    addpoints(h2,ts(i,1),acc(i,1));
-    addpoints(h3,ts(i,1),theta(i,1));
-    addpoints(h4,ts(i,1),w(i,1));
-    drawnow;
-    
-    % ----- save to gif -----
-    frame = getframe(2);
-    im = frame2im(frame);
-    [imind,cm] = rgb2ind(im,256);
-    if i == 1;
-        imwrite(imind,cm,filename,'gif','Loopcount',inf,'DelayTime',del);
-    else
-        imwrite(imind,cm,filename,'gif','WriteMode','append','DelayTime',del);
-    end
-end
+% figure('units','normalized','outerposition',[0 0 1 1])
+% filename = 'motion.gif';
+% 
+% subplot(4,2,2);
+% h1 = animatedline('Color','b','LineWidth',1);
+% axis([min(ts(:,1)) max(ts(:,1)) min(vel) max(vel)]);
+% title('v-t plot');
+% xlabel('t');
+% ylabel('v');
+% 
+% subplot(4,2,4);
+% h2 = animatedline('Color','b','LineWidth',1);
+% axis([min(ts(:,1)) max(ts(:,1)) min(acc)-1 max(acc)]);
+% title('acc-t plot');
+% xlabel('t');
+% ylabel('acc');
+% 
+% subplot(4,2,6);
+% h3 = animatedline('Color','b','LineWidth',1);
+% axis([min(ts(:,1)) max(ts(:,1)) min(theta) max(theta)]);
+% title('theta-t plot');
+% xlabel('t');
+% ylabel('theta');
+% 
+% subplot(4,2,8);
+% h4 = animatedline('Color','b','LineWidth',1);
+% axis([min(ts(:,1)) max(ts(:,1)) min(w(:,1)) max(w(:,1))]);
+% title('w-t plot');
+% xlabel('t');
+% ylabel('w');
+% 
+% del = 0.01; % time between animation frames
+% for i=1:size(ts,1)
+%     subplot(4,2,[1 3 5 7]);
+%     Plot(theta(i,1),H,L,l1,l2,l3);
+%     
+%     addpoints(h1,ts(i,1),vel(i,1));
+%     addpoints(h2,ts(i,1),acc(i,1));
+%     addpoints(h3,ts(i,1),theta(i,1));
+%     addpoints(h4,ts(i,1),w(i,1));
+%     drawnow;
+%     
+%     % ----- save to gif -----
+%     frame = getframe(2);
+%     im = frame2im(frame);
+%     [imind,cm] = rgb2ind(im,256);
+%     if i == 1;
+%         imwrite(imind,cm,filename,'gif','Loopcount',inf,'DelayTime',del);
+%     else
+%         imwrite(imind,cm,filename,'gif','WriteMode','append','DelayTime',del);
+%     end
+% end
 
 %% function
 function [O,A,B,C] = CalCoordinate(l1,l2,l3,H,L,theta)
