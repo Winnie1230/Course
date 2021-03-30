@@ -12,7 +12,7 @@ function PlotDamper(damp_x,damp_y,damp_equ)
     % -------------------------------
     damp_origin = 0;
     x_range = 2.5; y_range = 1.5;
-    dlen = 1;
+    dlen = 0.5;
 
     % ----- plot damper -----
     x_left = damp_x - dlen - x_range; 

@@ -14,12 +14,19 @@ d0 = (L^2 + (H-l1)^2)^(1/2); % origin length of spring
 
 u = 0.6; % friction coefficient
 
+damp_ratio = 0.26;
+k = 87;
+c = 2*I*damp_ratio*(l1^2*k/I)^(1/2)/l1^2;
+
+t_last = 0.1; % time that accelerate affect
+t_sim = 1; % time of total simulation time
+
 %% calculate acceleration(const)
 v0 = 0.5; % m/s
 % dis = 20; % distance(m)
 % a = [-1 -2 -2.1];
-a = [-1 -2 -3 -3.5 -3.9 -4];
-% a = -3.5;
+% a = [-1 -2 -3 -3.5 -3.9 -4];
+a = -3.5;
 % t_total = -v0/a;
 
 %% constraint
@@ -27,21 +34,16 @@ theta_max = asin(H/(H^2+L^2)^(1/2)) - asin((H^2+L^2+l1^2-l2^2-l3^2-2*l2*l3)/(2*l
 theta_min = -theta_max;
 
 %% compare different acceleration
-damp_ratio = 0.26;
-k = 87;
-
 plot_num = 3;
-% c = 2*m*damp_ratio*(k/m)^(1/2);
-c = 2*I*damp_ratio*(l1^2*k/I)^(1/2)/l1^2;
 
 figure('units','normalized','outerposition',[0 0 1 1]);
 for i = 1 : length(a)
     ap = a(i);
     % ----- state space representation -----
-    sys = @(t,X)[X(2);Torque(X(1),X(2),l1,l2,l3,H,L,m,acc(ap,t),g,k,c,d0)/I];
+    sys = @(t,X)[X(2);Torque(X(1),X(2),l1,l2,l3,H,L,m,acc(ap,t,t_last),g,k,c,d0)/I];
     % --------------------------------------
 
-    [ts,xs] = ode45(sys,[0,1],[0;0]);
+    [ts,xs] = ode45(sys,[0,t_sim],[0;0]);
 
     theta = xs(:,1);
     theta(theta>theta_max) = theta_max;
@@ -79,7 +81,7 @@ for i = 1 : length(a)
     
     subplot(plot_num,1,1);
     plot(ts(:,1),theta(:,1),'LineWidth',1,'DisplayName',['a=',num2str(-ap)]); hold on;
-    title('theta-t plot');
+    title({['damping ratio=' num2str(damp_ratio),', k=',num2str(k),', c=',num2str(c)];['theta-t plot']});
     xlabel('t(s)');
     ylabel('theta(rad)');
     legend
@@ -141,15 +143,11 @@ for i = 1 : length(a)
 end
 
 %% experience
-% damp_ratio = 0.2;
-% k = 87;
-% % c = 2*m*damp_ratio*(k/m)^(1/2);
-% c = 2*I*damp_ratio*(l1^2*k/I)^(1/2)/l1^2;
 % % ----- state space representation -----
-% sys = @(t,X)[X(2);Torque(X(1),X(2),l1,l2,l3,H,L,m,acc(a,t),g,k,c,d0)/I];
+% sys = @(t,X)[X(2);Torque(X(1),X(2),l1,l2,l3,H,L,m,acc(a,t,t_last),g,k,c,d0)/I];
 % % --------------------------------------
 % 
-% [ts,xs] = ode45(sys,[0,1],[0;0]);
+% [ts,xs] = ode45(sys,[0,t_sim],[0;0]);
 % 
 % theta = xs(:,1);
 % theta(theta>theta_max) = theta_max;
@@ -251,8 +249,8 @@ function Plot(theta,H,L,l1,l2,l3)
     ylim([0 H]);
 end
 
-function ac = acc(a,t)
-    if t < 0.1
+function ac = acc(a,t,t_last)
+    if t < t_last
         ac = a;
     else
         ac = 0;

@@ -1,6 +1,6 @@
 % plot SMD system by inputing the mass center position
 function PlotSMD(mass_center,equ_pt)
-    x_axis = 10; y_axis = 6;
+    x_axis = 12; y_axis = 6;
     % ----- plot Wall -----
     plot([0 x_axis],[0 0],'k','LineWidth',2); hold on;
     plot([0 0],[0 y_axis],'k','LineWidth',2); hold on;

@@ -14,7 +14,8 @@ t = 5; %sec
 f1 = @(t,X)[X(2);1/m*Force1(t,w1,A1)-k/m*X(1)-c/m*X(2)]; % sin input
 % --------------------------------------
 
-[ts,xs] = ode45(f1,[0,t],[0;0]);
+ic = [4;2];
+[ts,xs] = ode45(f1,[0,t],ic);
 
 %% animation
 subplot(2,2,2);
