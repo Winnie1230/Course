@@ -5,15 +5,15 @@ while Bilateral Filter uses the same image to construct range kernel.
 > Project Constrains: Cannot use cv2.filter2D, cv2.GaussianBlur in implementing Joint Bilateral Filter
 
 ## Implement Steps (JBL.py)
-Step1. Add padding to input image and guidance image 
-Step2. Get spatial kernel (Gaussian Kernel) 
-Step3. Vetorize image to make the convolution operation just becomes a matrix product(without using for loop) 
-Step4. Get range kernel (use guidance image as reference) 
-> Before calculating range kernel, pixel values should be normalized to [0,1] to construct range kernel 
-> Divide all channel with 255 
-
-Step5. Do convolution on each channel 
-Step6. Output filtered image 
+Step1. Add padding to input image and guidance image  
+Step2. Get spatial kernel (Gaussian Kernel)  
+Step3. Vetorize image to make the convolution operation just becomes a matrix product(without using for loop)  
+Step4. Get range kernel (use guidance image as reference)  
+> Before calculating range kernel, pixel values should be normalized to [0,1] to construct range kernel  
+> Divide all channel with 255  
+ 
+Step5. Do convolution on each channel  
+Step6. Output filtered image  
 
 ## Check if Joint Bilateral Filter algorithm is correct and its execution time for one image (eval.py)
 > Use eval.py to evaluate your JBL.py
