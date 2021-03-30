@@ -8,7 +8,7 @@ while Bilateral Filter uses the same image to construct range kernel.
 Step1. Add padding to input image and guidance image  
 Step2. Get spatial kernel (Gaussian Kernel)  
 Step3. Vetorize image to make the convolution operation just becomes a matrix product(without using for loop)  
-> Reference: [Implementing Convolution without for loops in Numpy!!!](https://medium.com/analytics-vidhya/implementing-convolution-without-for-loops-in-numpy-ce111322a7cd)
+> Reference: [Implementing Convolution without for loops in Numpy!!!](https://medium.com/analytics-vidhya/implementing-convolution-without-for-loops-in-numpy-ce111322a7cd)  
 Step4. Get range kernel (use guidance image as reference)  
 > Before calculating range kernel, pixel values should be normalized to [0,1] to construct range kernel  
 > Divide all channel with 255  
