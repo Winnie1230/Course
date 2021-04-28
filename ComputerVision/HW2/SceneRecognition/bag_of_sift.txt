@@ -1,0 +1,99 @@
+build vocabulary:
+dsift [5,5]
+get bag of sift:
+dsift [3,3]
+=>accuracy: 0.5427(k=1)
+=>accuracy: 0.546 (k=5)
+=>accuracy: 0.5513(k=4)
+=>accuracy: 0.5546(k=6)
+
+--------------------------------------
+build vocabulary:
+dsift [3, 3]
+get bag of sift:
+dsift[5, 5]
+=> accuracy: 0.5187
+
+--------------------------------------
+build vocabulary:
+dsift [5, 5]
+get bag of sift:
+dsift [1,1]
+=>accuracy: 0.5433(k=1)
+=>accuracy: 0.5533(k=5)
+=>accuracy: 0.564 (k=6)    v
+=>accuracy: 0.5586(k=7)
+
+--------------------------------------
+build vocabulary:
+dsift [3, 3]
+get bag of sift:
+dsift [1,1]
+=>accuracy: 0.564(k=6)
+=>accuracy: 0.5586(k=7)
+=>accuracy: 0.5533(k=5)
+
+--------------------------------------
+build vocabulary:
+dsift [7, 7]
+get bag of sift:
+dsift [1,1]
+=>accuracy: 0.5533(k=5)
+=>accuracy: 0.5586(k=7)
+=>accuracy: 0.564(k=6)      v
+
+--------------------------------------
+build vocabulary:
+dsift [7, 7]
+get bag of sift:
+dsift [3,3]
+=>accuracy: 0.5546(k=6)
+=>accuracy: 0.55 (k=7)
+=>accuracy: 0.546(k=5)
+
+--------------------------------------
+build vocabulary:
+dsift [7, 7]
+get bag of sift:
+dsift [5,5]
+=>accuracy: 0.5287(k=5)
+=>accuracy: 0.52(k=7)
+=>accuracy: 0.53(k=6)
+
+--------------------------------------
+build vocabulary:
+dsift [9, 9]
+get bag of sift:
+dsift [1,1]
+=>accuracy: 0.564(k=6)     v
+=>accuracy: 0.5587(k=7)
+=>accuracy: 0.5533(k=5)
+
+--------------------------------------
+build vocabulary:
+dsift [9, 9]
+get bag of sift:
+dsift [3,3]
+=>accuracy: 0.546(k=5)
+=>accuracy: 0.5547(k=6)
+=>accuracy: 0.55(k=7)
+
+--------------------------------------
+build vocabulary:
+dsift [9, 9]
+get bag of sift:
+dsift [5,5]
+=>accuracy: 0.52(k=7)
+=>accuracy: 0.53(k=6)
+=>accuracy: 0.5287(k=5)
+
+--------------------------------------
+build vocabulary:
+dsift [4, 4]
+get bag of sift:
+dsift [2, 2]
+=>accuracy: 0.534(k=5)
+=>accuracy: 0.5306(k=6)
+=>accuracy: 0.5413(k=7)
+
+
