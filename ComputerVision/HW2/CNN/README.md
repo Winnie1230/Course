@@ -8,9 +8,9 @@ output: classification label
 ![ConvNet](https://user-images.githubusercontent.com/40762011/116354439-ff490380-a82a-11eb-951b-52b28b3b17d2.PNG)
 
 #### Learning curve
-![conv_train](https://user-images.githubusercontent.com/40762011/116354174-9b263f80-a82a-11eb-802a-bab022cfd6e6.png =80%x)
+![conv_train](https://user-images.githubusercontent.com/40762011/116354174-9b263f80-a82a-11eb-802a-bab022cfd6e6.png)
 
-![conv_val](https://user-images.githubusercontent.com/40762011/116354205-a9745b80-a82a-11eb-91e0-1481b576030e.png =80%x)
+![conv_val](https://user-images.githubusercontent.com/40762011/116354205-a9745b80-a82a-11eb-91e0-1481b576030e.png)
 
 ### MyNet
 #### Network architecture and number of parameters
