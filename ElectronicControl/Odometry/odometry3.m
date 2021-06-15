@@ -7,8 +7,8 @@ w_seg1_t = 1;  w_seg2_t = 3;  w_seg3_t = 1;
 
 %% command generator
 % ----- command -----
-vt = 2; % m/s
-wt = 0.5; % rad/s
+vt = 1; % m/s
+wt = 0.3; % rad/s
 v_start = 0;
 w_start = 2;
 [tv,vcmd] = GenerateTrapzoidCmd(v_start, v_seg1_t, v_seg2_t, v_seg3_t, vt, dt);
@@ -76,15 +76,16 @@ figure('Name','Odometry','units','normalized','outerposition',[0 0 1 1])
 subplot(2,2,2);
 plot(t,vcmd,'Color','b','LineWidth',1);
 title('vcmd-t');
-xlabel('t');
-ylabel('vcmd');
+xlabel('t[s]');
+ylabel('vcmd[cm/s]');
+% axis([0 t(end,1) 0 max(vcmd)+0.5]);
 
 subplot(2,2,4);
 plot(t,wcmd,'Color','b','LineWidth',1);
-axis([0 t(end,1) 0 max(wcmd)]);
+% axis([0 t(end,1) 0 max(wcmd)+0.1]);
 title('wcmd-t plot');
-xlabel('t');
-ylabel('wcmd');
+xlabel('t[s]');
+ylabel('wcmd[rad/s]');
 
 subplot(2,2,[1,3]);
 plot(car_p_m(:,1),car_p_m(:,2),'Color','b','LineWidth',1,'DisplayName','car center position'); hold on
