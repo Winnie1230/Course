@@ -5,7 +5,7 @@ Our project can divide into two parts: SLAM, and trajectory planning.
 ## SLAM
 Set three IR sensor on the car and save the three IR values and car position. After traveling, one can get the point cloud of obstacles.
 
-### Trajectory planning
+## Trajectory planning
 Try three methods to do trajectory planning 
 1. electric field method(`field.m`)
 2. conventional potential field method(`cpf.m`)
